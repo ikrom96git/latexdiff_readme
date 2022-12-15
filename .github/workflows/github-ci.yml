@@ -1,16 +1,16 @@
-name: Docker Image CI
-
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
+
 jobs:
   
   my_job: 
     runs-on: ubuntu-latest
-    container: FROM registry.gitlab.com/islandoftex/images/texlive:latest
+    container: 
+      image: registry.gitlab.com/islandoftex/images/texlive:latest
  # build:
 
 #    runs-on: ubuntu-latest
