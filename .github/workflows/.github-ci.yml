@@ -16,14 +16,14 @@ jobs:
        # uses: dante-ev/latex-action@edge
         #with:
          #root_file: main.tex
+     
       - run: sudo apt-get -y install perl # Needed for latexdiff
       - run: git clone https://github.com/ftilmann/latexdiff.git /opt/latexdiff
       - run: git clone https://gitlab.com/git-latexdiff/git-latexdiff /opt/gitlatexdiff
       - run: (cd /opt/gitlatexdiff && sudo make install-bin)
-      - shell: bash
-        run: test=test1
-      - shell: bash
-        run: echo ${test}
+      - run: /bin/sh
+      - run: test=test1
+      - run: echo $test
       - run: cat /etc/shells
       - run: echo ${{env.test}}
       - run: OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
