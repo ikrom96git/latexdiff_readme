@@ -4,11 +4,12 @@ jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
+      
       - name: Set up Git repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 10
+      - shell: bash
       - run: git log 
       #- uses: supplypike/setup-bin@v1
       #- name: Compile main.tex
