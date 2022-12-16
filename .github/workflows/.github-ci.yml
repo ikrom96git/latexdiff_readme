@@ -18,15 +18,17 @@ jobs:
          git clone https://github.com/ftilmann/latexdiff.git /opt/latexdiff
          git clone https://gitlab.com/git-latexdiff/git-latexdiff /opt/gitlatexdiff
          (cd /opt/gitlatexdiff && make install-bin)
-         git log
-         OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
-         NEW=$(git log -n1 --format="%h")
+         if [[ $(echo $OLD) ]] ; then OLD=$(git log -n$(echo $OLD) --format="%h" -- *.tex | tail -1) ; else OLD=$(git log -n2 --format="%h" -- *.tex | tail -1); fi
+         if [[ $(echo $NEW) ]] ;  then NEW=$(git log -n$(echo $NEW) --format="%h" -- *tex | tail -1); else NEW=$(git log -n1 --format="%h"); fi
          mkdir git-latexdiff
          git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
          latexdiff $(find . -name "old*.tex" ) $(find . -name "new*.tex") > diffversion.tex
          sed -i 's/\\begin{document}/\\usepackage{draftwatermark} \\SetWatermarkText{LaTex Diff Version of '"$OLD"' to '"$NEW"'} \\SetWatermarkAngle{0} \\SetWatermarkScale{1} \\SetWatermarkVerCenter{.05\\textheight} \\SetWatermarkLightness{0.4} \\begin{document}/' diffversion.tex      
          latexmk -pdf diffversion.tex
-     # - name: 'Upload Artifact'
+     #OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
+       #NEW=$(git log -n1 --format="%h")
+        
+     #- name: 'Upload Artifact'
       #  uses: actions/upload-artifact@v3
        # with:
         #  name: my-artifact
