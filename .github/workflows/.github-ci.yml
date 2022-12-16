@@ -22,7 +22,7 @@ jobs:
       - run: echo test
       - run: OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
       - run: NEW=$(git log -n1 --format="%h" -- *.tex)
-      - run: echo OLD
+      - run: echo $OLD
       - run: mkdir git-latexdiff
       - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
       # - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
