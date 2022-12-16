@@ -24,6 +24,7 @@ jobs:
         run: test=test1
       - shell: bash
         run: echo ${test}
+      - run: cat /etc/shells
       - run: echo ${{env.test}}
       - run: OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
       - run: echo $OLD
