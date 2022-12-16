@@ -1,8 +1,12 @@
-build:
-  image: danteev/texlive
-  stage: build
-  script:
-    - latexmk -pdf document.tex
-  artifacts:
-    paths:
-      - document.pdf
+name: Build
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile document.tex
+        uses: dante-ev/latex-action@edge
+        with:
+          root_file: document.tex
