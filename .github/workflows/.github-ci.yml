@@ -24,7 +24,7 @@ jobs:
       - run: git log -n1 --format="%h" -- *.tex >> NEW
       - run: cat OLD
       - run: mkdir git-latexdiff
-      - run: ls ./git-latexdiff
+      - run: ls ./
       - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf OLD NEW
       # - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
       - run: latexdiff $(find . -name "old*.tex" ) $(find . -name "new*.tex") > diffversion.tex
