@@ -9,8 +9,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 10
-      - shell: bash
-        run: git log 
+
       #- uses: supplypike/setup-bin@v1
       #- name: Compile main.tex
        # uses: dante-ev/latex-action@edge
@@ -25,7 +24,6 @@ jobs:
       - run: test=test1
       - run: echo $test
       - run: cat /etc/shells
-      - run: echo ${{env.test}}
       - run: OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
       - run: echo $OLD
       - run: mkdir git-latexdiff
