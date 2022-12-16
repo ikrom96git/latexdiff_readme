@@ -2,7 +2,7 @@ name: Build
 on: [push]
 jobs:
   build_latex:
-    runs-on: ubuntu-latest
+    runs-on: registry.gitlab.com/islandoftex/images/texlive:latest
     steps:
       
       - name: Set up Git repository
@@ -11,10 +11,10 @@ jobs:
           fetch-depth: 100
 
       #- uses: supplypike/setup-bin@v1
-      - name: Compile main.tex
-        uses: dante-ev/latex-action@edge
-        with:
-         root_file: main.tex
+      #- name: Compile main.tex
+       # uses: dante-ev/latex-action@edge
+        #with:
+         #root_file: main.tex
       - run: echo $SHELL
       - run: sudo apt-get -y install perl # Needed for latexdiff
       - run: git clone https://github.com/ftilmann/latexdiff.git /opt/latexdiff
