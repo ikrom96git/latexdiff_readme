@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 10
       - run: git log 
@@ -22,7 +22,7 @@ jobs:
       - run: echo $test
       - run: git log -n2 --format="%h" -- *.tex | tail -1 >> OLD
       - run: git log -n1 --format="%h" -- *.tex >> NEW
-      - run: cat OLD
+      - run: man git latexdiff
       - run: mkdir git-latexdiff
       - run: ls ./
       - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf OLD NEW
