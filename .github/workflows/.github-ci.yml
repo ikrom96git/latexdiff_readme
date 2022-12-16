@@ -18,8 +18,8 @@ jobs:
       - run: git clone https://github.com/ftilmann/latexdiff.git /opt/latexdiff
       - run: git clone https://gitlab.com/git-latexdiff/git-latexdiff /opt/gitlatexdiff
       - run: (cd /opt/gitlatexdiff && sudo make install-bin)
-      - run: git log -n2 --format="%h" -- *.tex | tail -1
-      - run: git log -n1 --format="%h" -- *.tex
+      - run: test=test1
+      - run: echo test
       - run: OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
       - run: NEW=$(git log -n1 --format="%h" -- *.tex)
       - run: echo OLD
