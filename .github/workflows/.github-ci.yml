@@ -8,13 +8,13 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 10
+          fetch-depth: 100
 
       #- uses: supplypike/setup-bin@v1
-      #- name: Compile main.tex
-       # uses: dante-ev/latex-action@edge
-        #with:
-         #root_file: main.tex
+      - name: Compile main.tex
+        uses: dante-ev/latex-action@edge
+        with:
+         root_file: main.tex
       - run: echo $SHELL
       - run: sudo apt-get -y install perl # Needed for latexdiff
       - run: git clone https://github.com/ftilmann/latexdiff.git /opt/latexdiff
@@ -27,7 +27,7 @@ jobs:
       - run: OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
       - run: echo $OLD
       - run: mkdir git-latexdiff
-      - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf OLD NEW
+      - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $(git log -n2 --format="%h" -- *.tex | tail -1) $(git log -n1 --format="%h" -- *.tex)
       # - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
       - run: latexdiff $(find . -name "old*.tex" ) $(find . -name "new*.tex") > diffversion.tex
       - run: sed -i 's/\\begin{document}/\\usepackage{draftwatermark} \\SetWatermarkText{LaTex Diff Version of '"$OLD"' to '"$NEW"'} \\SetWatermarkAngle{0} \\SetWatermarkScale{1} \\SetWatermarkVerCenter{.05\\textheight} \\SetWatermarkLightness{0.4} \\begin{document}/' diffversion.tex
