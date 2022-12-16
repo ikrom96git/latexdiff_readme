@@ -9,11 +9,11 @@ jobs:
         with:
           fetch-depth: 10
       - run: git log 
-      #- uses: supplypike/setup-bin@v1
-      #- name: Compile main.tex
-       # uses: dante-ev/latex-action@edge
-        #with:
-         # root_file: main.tex
+      - uses: supplypike/setup-bin@v1
+      - name: Compile main.tex
+        uses: dante-ev/latex-action@edge
+        with:
+         root_file: main.tex
       - run: sudo apt-get -y install perl # Needed for latexdiff
       - run: git clone https://github.com/ftilmann/latexdiff.git /opt/latexdiff
       - run: git clone https://gitlab.com/git-latexdiff/git-latexdiff /opt/gitlatexdiff
