@@ -6,6 +6,7 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v3
+      - run: apt-get -y install perl # Needed for latexdiff
       - name: Compile main.tex
         uses: dante-ev/latex-action@edge
         with:
