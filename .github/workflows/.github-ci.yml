@@ -14,32 +14,24 @@ jobs:
       - shell: bash
         run: |
          apt-get -y install perl # Needed for latexdiff
-         echo something
-      - run: apt-get -y install perl # Needed for latexdiff
-      - run: git clone https://github.com/ftilmann/latexdiff.git /opt/latexdiff
-      - run: git clone https://gitlab.com/git-latexdiff/git-latexdiff /opt/gitlatexdiff
-      - run: (cd /opt/gitlatexdiff && make install-bin)
-      - run: git log
-      - shell: bash
-        run: |
-          OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
-          NEW=$(git log -n1 --format="%h")
-          echo $OLD
-          echo "This i a test" > text.txt
-          ls
-          pwd      
-      - name: 'Upload Artifact'
-        uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: text.txt    
-     # - run: ls
-      #- run: mkdir git-latexdiff
-      #- run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
-      # - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
-      #- run: latexdiff $(find . -name "old*.tex" ) $(find . -name "new*.tex") > diffversion.tex
-      #- run: sed -i 's/\\begin{document}/\\usepackage{draftwatermark} \\SetWatermarkText{LaTex Diff Version of '"$OLD"' to '"$NEW"'} \\SetWatermarkAngle{0} \\SetWatermarkScale{1} \\SetWatermarkVerCenter{.05\\textheight} \\SetWatermarkLightness{0.4} \\begin{document}/' diffversion.tex
-     # - run: latexmk -pdf diffversion.tex
+         apt-get -y install perl # Needed for latexdiff
+         git clone https://github.com/ftilmann/latexdiff.git /opt/latexdiff
+         git clone https://gitlab.com/git-latexdiff/git-latexdiff /opt/gitlatexdiff
+         (cd /opt/gitlatexdiff && make install-bin)
+         git log
+         OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
+         NEW=$(git log -n1 --format="%h")
+         mkdir git-latexdiff
+         git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
+         latexdiff $(find . -name "old*.tex" ) $(find . -name "new*.tex") > diffversion.tex
+         sed -i 's/\\begin{document}/\\usepackage{draftwatermark} \\SetWatermarkText{LaTex Diff Version of '"$OLD"' to '"$NEW"'} \\SetWatermarkAngle{0} \\SetWatermarkScale{1} \\SetWatermarkVerCenter{.05\\textheight} \\SetWatermarkLightness{0.4} \\begin{document}/' diffversion.tex      
+         latexmk -pdf diffversion.tex
+     # - name: 'Upload Artifact'
+      #  uses: actions/upload-artifact@v3
+       # with:
+        #  name: my-artifact
+         # path: text.txt    
+     
       # - name: 'Upload Artifact'
         #uses: actions/upload-artifact@v3
         #with:
