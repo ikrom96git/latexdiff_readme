@@ -4,9 +4,7 @@ jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
-      - name: bash
-        shell: bash
-        run: echo test
+      - shell: bash
       - name: Set up Git repository
         uses: actions/checkout@v3
         with:
