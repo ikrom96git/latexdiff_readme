@@ -32,17 +32,21 @@ jobs:
           echo $OLD
           echo "This i a test" > text.txt
           ls
-          pwd
-        
-      - run: ls
-      - run: mkdir git-latexdiff
-      - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
-      # - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
-      - run: latexdiff $(find . -name "old*.tex" ) $(find . -name "new*.tex") > diffversion.tex
-      - run: sed -i 's/\\begin{document}/\\usepackage{draftwatermark} \\SetWatermarkText{LaTex Diff Version of '"$OLD"' to '"$NEW"'} \\SetWatermarkAngle{0} \\SetWatermarkScale{1} \\SetWatermarkVerCenter{.05\\textheight} \\SetWatermarkLightness{0.4} \\begin{document}/' diffversion.tex
-      - run: latexmk -pdf diffversion.tex
+          pwd      
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: diffversion.pdf
+          path: text.txt    
+     # - run: ls
+      #- run: mkdir git-latexdiff
+      #- run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
+      # - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
+      #- run: latexdiff $(find . -name "old*.tex" ) $(find . -name "new*.tex") > diffversion.tex
+      #- run: sed -i 's/\\begin{document}/\\usepackage{draftwatermark} \\SetWatermarkText{LaTex Diff Version of '"$OLD"' to '"$NEW"'} \\SetWatermarkAngle{0} \\SetWatermarkScale{1} \\SetWatermarkVerCenter{.05\\textheight} \\SetWatermarkLightness{0.4} \\begin{document}/' diffversion.tex
+     # - run: latexmk -pdf diffversion.tex
+      # - name: 'Upload Artifact'
+        #uses: actions/upload-artifact@v3
+        #with:
+         # name: my-artifact
+          #path: diffversion.pdf
