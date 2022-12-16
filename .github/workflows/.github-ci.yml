@@ -4,24 +4,26 @@ jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
+      - name: bash
+        shell: bash
       - name: Set up Git repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 10
       - run: git log 
       #- uses: supplypike/setup-bin@v1
-      - name: Compile main.tex
-        uses: dante-ev/latex-action@edge
-        with:
-         root_file: main.tex
+      #- name: Compile main.tex
+       # uses: dante-ev/latex-action@edge
+        #with:
+         #root_file: main.tex
       - run: sudo apt-get -y install perl # Needed for latexdiff
       - run: git clone https://github.com/ftilmann/latexdiff.git /opt/latexdiff
       - run: git clone https://gitlab.com/git-latexdiff/git-latexdiff /opt/gitlatexdiff
       - run: (cd /opt/gitlatexdiff && sudo make install-bin)
       - run: test=test1
       - run: echo $test
-      - run: git log -n2 --format="%h" -- *.tex | tail -1 >> OLD
-      - run: git log -n1 --format="%h" -- *.tex >> NEW
+      - run: OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
+      - run: echo $OLD
       - run: mkdir git-latexdiff
       - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf OLD NEW
       # - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
