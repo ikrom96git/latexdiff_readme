@@ -7,6 +7,8 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v3
       - run: git clone https://github.com/ftilmann/latexdiff.git /opt/latexdiff
+      - run: git clone https://gitlab.com/git-latexdiff/git-latexdiff /opt/gitlatexdiff
+      - run: (cd /opt/gitlatexdiff && make install-bin)
       - name: Compile main.tex
         uses: dante-ev/latex-action@edge
         with:
