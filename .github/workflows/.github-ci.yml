@@ -10,3 +10,10 @@ jobs:
         uses: dante-ev/latex-action@edge
         with:
           root_file: main.tex
+      
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+    
+      - name: Display structure of downloaded files
+        run: ls -R
