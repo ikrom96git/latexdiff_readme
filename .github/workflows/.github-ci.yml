@@ -9,6 +9,8 @@ jobs:
       - run: git clone https://github.com/ftilmann/latexdiff.git /opt/latexdiff
       - run: git clone https://gitlab.com/git-latexdiff/git-latexdiff /opt/gitlatexdiff
       - run: (cd /opt/gitlatexdiff && make install-bin)
+      - run: if [[ $(echo $OLD) ]] ; then OLD=$(git log -n$(echo $OLD) --format="%h" -- *.tex | tail -1) ; else OLD=$(git log -n2 --format="%h" -- *.tex | tail -1); fi
+      - run: if [[ $(echo $NEW) ]] ;  then NEW=$(git log -n$(echo $NEW) --format="%h" -- *tex | tail -1); else NEW=$(git log -n1 --format="%h"); fi
       - name: Compile main.tex
         uses: dante-ev/latex-action@edge
         with:
