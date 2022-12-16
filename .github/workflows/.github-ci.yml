@@ -25,17 +25,9 @@ jobs:
          latexdiff $(find . -name "old*.tex" ) $(find . -name "new*.tex") > diffversion.tex
          sed -i 's/\\begin{document}/\\usepackage{draftwatermark} \\SetWatermarkText{LaTex Diff Version of '"$OLD"' to '"$NEW"'} \\SetWatermarkAngle{0} \\SetWatermarkScale{1} \\SetWatermarkVerCenter{.05\\textheight} \\SetWatermarkLightness{0.4} \\begin{document}/' diffversion.tex      
          latexmk -pdf diffversion.tex
-     #OLD=$(git log -n2 --format="%h" -- *.tex | tail -1)
-       #NEW=$(git log -n1 --format="%h")
-        
-     #- name: 'Upload Artifact'
-      #  uses: actions/upload-artifact@v3
-       # with:
-        #  name: my-artifact
-         # path: text.txt    
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: diffversion.pdf  
      
-      # - name: 'Upload Artifact'
-        #uses: actions/upload-artifact@v3
-        #with:
-         # name: my-artifact
-          #path: diffversion.pdf
