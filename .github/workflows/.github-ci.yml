@@ -1,0 +1,8 @@
+build:
+  image: danteev/texlive
+  stage: build
+  script:
+    - latexmk -pdf document.tex
+  artifacts:
+    paths:
+      - document.pdf
