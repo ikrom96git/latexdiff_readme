@@ -2,9 +2,10 @@ name: Build
 on: [push]
 jobs:
   build_latex:
-    runs-on: registry.gitlab.com/islandoftex/images/texlive:latest
-    steps:
-      
+    runs-on: ubuntu-latest
+    container: 
+      image: registry.gitlab.com/islandoftex/images/texlive:latest
+    steps:    
       - name: Set up Git repository
         uses: actions/checkout@v3
         with:
