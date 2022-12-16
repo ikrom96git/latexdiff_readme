@@ -31,8 +31,10 @@ jobs:
           NEW=$(git log -n1 --format="%h")
           echo $OLD
           echo "This i a test" > text.txt
+          ls
+          pwd
         
-      - run: echo $OLD
+      - run: ls
       - run: mkdir git-latexdiff
       - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
       # - run: git latexdiff --quiet --no-view --ignore-makefile --main main.tex --tmpdirprefix ./git-latexdiff/ --cleanup keeppdf $OLD $NEW
