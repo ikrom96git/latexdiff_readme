@@ -8,7 +8,7 @@ jobs:
     env:
       # Edit here with the names of your latex file and directory (can use ".")
       DIR: .
-      FILE: Main
+      FILE: main
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -34,7 +34,7 @@ jobs:
         run: latexmk -pdf -bibtex ${{ env.FILE }}
         #run: pdflatex ${{ env.FILE }}; bibtex ${{ env.FILE }}; pdflatex ${{ env.FILE }}; #pdflatex ${{ env.FILE }};
       - name: move
-        run: mkdir -p github_artifacts && ls && mv ${{ env.DIR }}/main.pdf ./github_artifacts/
+        run: mkdir -p github_artifacts && ls && mv ${{ env.DIR }}/${{ env.FILE }}.pdf ./github_artifacts/ && mv ${{ env.DIR }}/diffversion.pdf ./github_artifacts/
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v2
         with:
