@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Edit here with the names of your latex file and directory (can use ".")
-      DIR: writing
+      DIR: .
       FILE: Main
     steps:
       - name: Checkout
