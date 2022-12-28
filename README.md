@@ -23,7 +23,7 @@ the variable via the push command.
     >>    FILE: main
     
  - Needs to be change the link to the pdf files in README.md file:
-   > https://<github.com>/**username**/**repository_name**/raw/build/**main_tex_name**.pdf}
+   > https://<!github.com!>/**username**/**repository_name**/raw/build/**main_tex_name**.pdf}
    
    >https://<github.com>/**username**/**repository_name**/raw/build/diffversion.pdf
 ## THE OUTPUT
