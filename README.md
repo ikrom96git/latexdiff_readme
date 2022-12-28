@@ -16,7 +16,7 @@ the variable via the push command.
 -  Only changes have to be done:
    > env:
    
-    > Edit here with the names of your latex file and directory (can use ".")
+    > # Edit here with the names of your latex file and directory (can use ".")
    
 	>>DIR: .
 	
