@@ -26,6 +26,7 @@ the variable via the push command.
    > https:// github.com /**username**/**repository_name**/raw/build/**main_tex_name**.pdf}
    
    >https:// github.com /**username**/**repository_name**/raw/build/diffversion.pdf
+   >https://<!--This is a comment-->gist.github.com/<!--This is, too-->alexpeattie/4729247
 ## THE OUTPUT
 Here is the current pdf:
 
