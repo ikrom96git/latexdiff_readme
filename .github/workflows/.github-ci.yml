@@ -29,12 +29,12 @@ jobs:
          latexdiff $(find . -name "old*.tex" ) $(find . -name "new*.tex") > diffversion.tex
          sed -i 's/\\begin{document}/\\usepackage{draftwatermark} \\SetWatermarkText{LaTex Diff Version of '"$OLD"' to '"$NEW"'} \\SetWatermarkAngle{0} \\SetWatermarkScale{1} \\SetWatermarkVerCenter{.05\\textheight} \\SetWatermarkLightness{0.4} \\begin{document}/' diffversion.tex      
          latexmk -pdf diffversion.tex
-      - name: LaTeX compile
-        working-directory: ${{ env.DIR }}
-        run: latexmk -pdf ${{ env.FILE }}.tex
+      #- name: LaTeX compile
+       # working-directory: ${{ env.DIR }}
+        #run: latexmk -pdf ${{ env.FILE }}.tex
         #run: pdflatex ${{ env.FILE }}; bibtex ${{ env.FILE }}; pdflatex ${{ env.FILE }}; #pdflatex ${{ env.FILE }};
       - name: move
-        run: mkdir -p github_artifacts && ls && mv ${{ env.DIR }}/${{ env.FILE }}.pdf ./github_artifacts/ && mv ${{ env.DIR }}/diffversion.pdf ./github_artifacts/
+        run: mkdir -p github_artifacts && ls && mv ${{ env.DIR }}/diffversion.pdf ./github_artifacts/
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v2
         with:
