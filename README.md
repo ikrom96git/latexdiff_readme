@@ -18,9 +18,9 @@ the variable via the push command.
    
     > Edit here with the names of your latex file and directory (can use ".")
    
-	>DIR: .
+	>>DIR: .
 	
-    >    FILE: main
+    >>    FILE: main
     
  - Needs to be change the link to the pdf files in README.md file:
    > https://github.com/**username**/**repository_name**/raw/build/**main_tex_name**.pdf
