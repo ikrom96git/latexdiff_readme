@@ -16,7 +16,7 @@ the variable via the push command.
 -  Only changes have to be done:
    > env:
    
-    > # Edit here with the names of your latex file and directory (can use ".")
+    > \# Edit here with the names of your latex file and directory (can use ".")
    
 	>>DIR: .
 	
@@ -24,9 +24,13 @@ the variable via the push command.
     
  - Needs to be change the link to the pdf files in README.md file:
    > https://github.com/**username**/**repository_name**/raw/build/**main_tex_name**.pdf
+   
    >https://github.com/**username**/**repository_name**/raw/build/diffversion.pdf
 ## THE OUTPUT
 Here is the current pdf:
+
 [![](https://img.shields.io/badge/Download-pdf-red)](https://github.com/ikrom96git/latexdiff_readme/raw/build/main.pdf)
+
 Here is the version showcasing all the difference to the penultimate commit
+
 [![](https://img.shields.io/badge/Download-pdf-red)](https://github.com/ikrom96git/latexdiff_readme/raw/build/diffversion.pdf)
