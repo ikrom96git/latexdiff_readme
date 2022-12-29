@@ -34,7 +34,7 @@ jobs:
         #run: latexmk -pdf ${{ env.FILE }}.tex
         #run: pdflatex ${{ env.FILE }}; bibtex ${{ env.FILE }}; pdflatex ${{ env.FILE }}; #pdflatex ${{ env.FILE }};
       - name: move
-        run: mkdir -p github_artifacts && ls && mv ${{ env.DIR }}/${{ env.FILE }}.pdf ./github_artifacts/ && mv ${{ env.DIR }}/diffversion.pdf ./github_artifacts/
+        run: mkdir -p github_artifacts && ls && mv ${{ env.DIR }}/diffversion.pdf ./github_artifacts/ #&& mv ${{ env.DIR }}/${{ env.FILE }}.pdf ./github_artifacts/ 
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v3
         with:
