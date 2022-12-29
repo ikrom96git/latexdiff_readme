@@ -14,8 +14,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 100
-      #- name: Install TeXlive
-       # run: sudo apt-get update && sudo apt-get install texlive texlive-publishers texlive-science latexmk cm-super
       - name: Create latex diff file
         shell: bash
         run: |
@@ -31,25 +29,18 @@ jobs:
          latexdiff $(find . -name "old*.tex" ) $(find . -name "new*.tex") > diffversion.tex
          sed -i 's/\\begin{document}/\\usepackage{draftwatermark} \\SetWatermarkText{LaTex Diff Version of '"$OLD"' to '"$NEW"'} \\SetWatermarkAngle{0} \\SetWatermarkScale{1} \\SetWatermarkVerCenter{.05\\textheight} \\SetWatermarkLightness{0.4} \\begin{document}/' diffversion.tex      
          latexmk -pdf diffversion.tex
-      #- name: LaTeX compile
-       # working-directory: ${{ env.DIR }}
-        #run: latexmk -pdf ${{ env.FILE }}.tex
+      - name: LaTeX compile
+        working-directory: ${{ env.DIR }}
+        run: latexmk -pdf ${{ env.FILE }}.tex
         #run: pdflatex ${{ env.FILE }}; bibtex ${{ env.FILE }}; pdflatex ${{ env.FILE }}; #pdflatex ${{ env.FILE }};
       - name: move
-        run: mkdir -p github_artifacts && ls && mv ${{ env.DIR }}/diffversion.pdf ./github_artifacts/ #&& mv ${{ env.DIR }}/${{ env.FILE }}.pdf ./github_artifacts/ 
+        run: mkdir -p github_artifacts && ls && mv ${{ env.DIR }}/diffversion.pdf ./github_artifacts/ && mv ${{ env.DIR }}/${{ env.FILE }}.pdf ./github_artifacts/ 
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.FILE }}.pdf
           path: ./github_artifacts
-      
-      #- name: move latex diff
-       # run: ls && mv ${{ env.DIR }}/diffversion.pdf ./github_artifacts/
-      #- name: Upload pdf as artifact
-       # uses: actions/upload-artifact@v2
-        #with:
-         # name: diffversion.pdf
-          #path: ./github_artifacts
+
   deploy:
     # Edit here if compiling multiple papers
     needs: [paper]
