@@ -1,42 +1,36 @@
 # Welcome to Latexdiff!
 
-This is a project to demonstrate how to make use of the git pipeline to create a pdf showing all
-changes that were made with respect to some earlier commit. 
+This project demonstrates how to use the Git pipeline to create a PDF showing all changes made in comparison to some earlier commit, leveraging latexdiff.
 
+The default setting is to produce the difference between the current commit and the penultimate change in the LaTeX file.
 
-This is done with the help of latex diff.
-The default is set to produce the difference between the current commit and
-the penultimate change in the latex file.
-
-
-In order to manually set which two versions should be compared one get set
-the variable via the push command.
+To manually set which two versions should be compared, one can set the variable via the push command.
 
 ##  Important
 
-- You need to change directory and file name if it is different from **cwd** and **main.tex**
-  >  It can be changed in the following .github-ci.yml file. 
+- You may need to change the directory and file name if they are different from **cwd** and **main.tex**.
+  > It can be changed in the following .github-ci.yml file.
   
-  >  Location: .github/workflows/.github-ci.yml
--  Only changes have to be done:
-   > env:
-   
-    > \# Edit here with the names of your latex file and directory (can use ".")
-   
-	>>DIR: .
-	
-    >>    FILE: main
-    
- - Needs to be change the link to the pdf files in README.md file:
-   > https://<!--This is a comment-->github.com/<!--This is, too-->**username**/**repository_name**/raw/build/**main_tex_name**.pdf}
-   
-   >https://<!--This is a comment-->github.com/<!--This is, too-->**username**/**repository_name**/raw/build/diffversion.pdf
+  > Location: .github/workflows/.github-ci.yml
+
+- The only changes that need to be made:
+  > ```yaml
+  > env:
+  >   # Edit here with the names of your LaTeX file and directory (can use ".")
+  >   DIR: .
+  >   FILE: main
+  > ```
+
+- Update the links to the PDF files in the README.md file:
+  > [Download Main PDF](https://github.com/username/repository_name/raw/build/main.pdf)
+  
+  > [Download Latex Diff PDF](https://github.com/username/repository_name/raw/build/diffversion.pdf)
 
 ## THE OUTPUT
-Here is the current pdf:
+Here is the current PDF:
 
-[![](https://img.shields.io/badge/Download-pdf-red)](https://github.com/ikrom96git/latexdiff_readme/raw/build/main.pdf)
+[![](https://img.shields.io/badge/Download-pdf-red)](https://github.com/username/repository_name/raw/build/main.pdf)
 
-Here is the version showcasing all the difference to the penultimate commit
+Here is the version showcasing all the differences to the penultimate commit:
 
-[![](https://img.shields.io/badge/Download-pdf-red)](https://github.com/ikrom96git/latexdiff_readme/raw/build/diffversion.pdf)
+[![](https://img.shields.io/badge/Download-pdf-red)](https://github.com/username/repository_name/raw/build/diffversion.pdf)
