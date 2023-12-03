@@ -22,15 +22,16 @@ To manually set which two versions should be compared, one can set the variable 
   > ```
 
 - Update the links to the PDF files in the README.md file:
-  > [Download Main PDF](https://github.com/username/repository_name/raw/build/main.pdf)
-  
-  > [Download Latex Diff PDF](https://github.com/username/repository_name/raw/build/diffversion.pdf)
+ > https://<!--This is a comment-->github.com/<!--This is, too-->**username**/**repository_name**/raw/build/**main_tex_name**.pdf}
+   
+ >https://<!--This is a comment-->github.com/<!--This is, too-->**username**/**repository_name**/raw/build/diffversion.pdf
+
 
 ## THE OUTPUT
 Here is the current PDF:
 
-[![](https://img.shields.io/badge/Download-pdf-red)](https://github.com/username/repository_name/raw/build/main.pdf)
+[![](https://img.shields.io/badge/Download-pdf-red)](https://github.com/ikrom96git/latexdiff_readme/blob/build/main.pdf)
 
 Here is the version showcasing all the differences to the penultimate commit:
 
-[![](https://img.shields.io/badge/Download-pdf-red)](https://github.com/username/repository_name/raw/build/diffversion.pdf)
+[![](https://img.shields.io/badge/Download-pdf-red)](https://github.com/ikrom96git/latexdiff_readme/blob/build/diffversion.pdf)
